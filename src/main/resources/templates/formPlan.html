@@ -28,15 +28,26 @@
 							<div class="form-group">
 								<label for="planesSelect">Dietas:</label>
 								<select multiple class="form-control" th:field="*{dieta}">
-									<option th:each="d : ${dietas}" th:value="${d.id}" th:text="${d.nombre_dieta}"></option>
+									<option th:each="d : ${dietas}" th:value="${d.id}" th:text="${d.nombre_dieta}">
+									</option>
 								</select>
 							</div>
 							<div class="form-group">
 								<label for="planesSelect">Entrenamientos:</label>
 								<select multiple class="form-control" th:field="*{entrenamiento}">
-									<option th:each="e : ${entrenamientos}" th:value="${e.id}" th:text="${e.nombre_entrenamiento}"></option>
+									<option th:each="e : ${entrenamientos}" th:value="${e.id}"
+										th:text="${e.nombre_entrenamiento}"></option>
 								</select>
 							</div>
+							<div class="form-group">
+								<label for="usuariosSelect">Usuarios:</label>
+								<select multiple class="form-control" id="usuariosSelect" name="usuarioIds">
+									<option th:each="usuario : ${usuarios}" th:value="${usuario.id}"
+										th:text="${usuario.nombre}"></option>
+								</select>
+							</div>
+
+
 							</p>
 						</div>
 					</div>

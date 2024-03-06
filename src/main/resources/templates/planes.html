@@ -35,14 +35,18 @@
 						<th scope="col">Plan</th>
 						<th scope="col">Dietas</th>
 						<th scope="col">Entrenamientos</th>
+						<th scope="col">Usuarios</th>
 						<th scope="col">Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr th:each="plan : ${planes}">
 						<td th:text="${plan.id}">ID</td>
-						<td th:text="${plan.dieta.nombre_dieta}">Nombre de la dieta</td>
-						<td th:text="${plan.entrenamiento.nombre_entrenamiento}">Nombre del entrenamiento</td>
+						<td th:text="${plan.dieta?.nombre_dieta}">Nombre de la dieta</td>
+						<td th:text="${plan.entrenamiento?.nombre_entrenamiento}">Nombre del entrenamiento</td>
+						<div th:each="usuario : ${plan.usuarios}">
+							<td th:text="${usuario.id}">Nombre de Usuario</td>
+						</div>
 						<td>
 							<a th:href="@{/plan/edit/{id}(id=${plan.id})}" class="btn btn-primary">Editar</a>
 							<a th:href="@{/plan/del/{id}(id=${plan.id})}" class="btn btn-danger">Eliminar</a>
