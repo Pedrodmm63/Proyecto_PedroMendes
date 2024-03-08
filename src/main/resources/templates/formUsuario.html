@@ -10,7 +10,7 @@
 </head>
 
 <body>
-	<h1>Dieta</h1>
+	<h1>Usuario</h1>
 
 
 	<div class="container text-center">
@@ -19,38 +19,27 @@
 			</div>
 
 			<div class="col col-md-4">
-				<form th:action="@{/plan/save}" th:object="${plan}" method="post">
+				<form th:action="@{/usuario/save}" th:object="${usuario}" method="post">
 					<div class="card bg-light mb-3" style="max-width: 18rem;">
 						<div class="card-body">
 							<h5 class="card-title"><input type="text" th:field="*{id}" size="10" /></h5>
 							<p class="card-text">
 							<div class="form-group">
-								<label for="planesSelect">Descripción::</label>
-								<input  th:field="*{descripcion}"> </input>
+								<label for="planesSelect">Nombre:</label>
+								<input th:field="*{nombre}"> </input>
 							</div>
 							<div class="form-group">
-								<label for="planesSelect">Dietas:</label>
-								<select multiple class="form-control" th:field="*{dieta}">
-									<option th:each="d : ${dietas}" th:value="${d.id}" th:text="${d.nombre_dieta}">
-									</option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label for="planesSelect">Entrenamientos:</label>
-								<select multiple class="form-control" th:field="*{entrenamiento}">
-									<option th:each="e : ${entrenamientos}" th:value="${e.id}"
-										th:text="${e.nombre_entrenamiento}"></option>
-								</select>
-							</div>
-							<div class="form-group">
-								<label for="usuariosSelect">Usuarios:</label>
-								<select multiple class="form-control" id="usuariosSelect" name="usuarioIds">
-									<option th:each="usuario : ${usuarios}" th:value="${usuario.id}"
-										th:text="${usuario.nombre}"></option>
-								</select>
-							</div>
+								<label for="planesSelect">Email:</label>
+								<input th:field="*{email}"> </input>
 
-
+							</div>
+							<div class="form-group">
+								<label for="planesSelect">Plan:</label>
+								<select multiple class="form-control" id="planSelect" name="planIds">
+									<option th:each="plan : ${planes}" th:value="${plan.id}"
+										th:text="${plan.id}"></option>
+								</select>
+							</div>
 							</p>
 						</div>
 					</div>
@@ -61,7 +50,7 @@
 
 			</div>
 			<div class="col col-md-5 d-flex justify-content-between align-items-left">
-				<a th:href="@{~/plan}" class="btn btn-primary btn-sm">volver</a>
+				<a th:href="@{~/usuario}" class="btn btn-primary btn-sm">volver</a>
 			</div>
 
 		</div>

@@ -9,9 +9,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
-public class Plan_usuario {
+public class PlanUsuario {
 
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,10 +20,13 @@ public class Plan_usuario {
 
     @ManyToOne
     @JoinColumn(name = "plan_id")
+	@NotNull
+
     private Plan plan;
 
     @ManyToOne
     @JoinColumn(name = "usuario_id")
+	@NotNull
     private Usuario usuario;
 
 	public Long getId() {
@@ -48,5 +52,11 @@ public class Plan_usuario {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+
+	@Override
+	public String toString() {
+		return "Plan_usuario [id=" + id + ", plan=" + plan + ", usuario=" + usuario + "]";
+	}
     
+	
 }

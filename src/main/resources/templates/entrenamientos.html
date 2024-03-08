@@ -29,7 +29,8 @@
 			</div>
 		</div>
 		<div class="col-5">
-			<table class="table table-sm table-hover">
+			<p th:if="${#lists.isEmpty(entrenamientos)}">Vacía la tabla</p>
+			<table class="table table-sm table-hover" th:unless="${#lists.isEmpty(entrenamientos)}">
 				<thead>
 					<tr>
 						<th scope="col">#</th>
@@ -42,8 +43,8 @@
 				<tbody>
 					<tr th:each="entrenamiento : ${entrenamientos}">
 						<td th:text="${entrenamiento.id}">ID</td>
-						<td th:text="${entrenamiento.nombre_entrenamiento}">Nombre de la dieta</td>
-						<td th:text="${entrenamiento.descripcion_entrenamiento}">Descripción de la dieta</td>
+						<td th:text="${entrenamiento.nombre_entrenamiento}">Nombre del plan</td>
+						<td th:text="${entrenamiento.descripcion_entrenamiento}">Descripción del plan</td>
 						<td>
 							<div th:each="plan : ${entrenamiento.planes}">
 								<span th:text="${plan.id}">Nombre del Plan</span>

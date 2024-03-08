@@ -10,6 +10,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Size;
+
+
 
 @Entity
 public class Dieta {
@@ -18,7 +21,9 @@ public class Dieta {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
+	@Size(max = 100)
 	private String nombre_dieta;
+	@Size(max = 255)
 	private String descripcion_dieta;
 
 	@OneToMany(mappedBy = "dieta")

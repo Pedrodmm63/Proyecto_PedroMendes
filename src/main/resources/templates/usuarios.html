@@ -22,35 +22,33 @@
 				<div class="col-1">
 				</div>
 				<div class="col-2">
-					<p><a class="btn btn-outline-primary" th:href="@{~/plan/add}">+</a></p>
+					<p><a class="btn btn-outline-primary" th:href="@{~/usuario/add}">Añadir</a></p>
 				</div>
 				<div class="col-9">
 				</div>
 			</div>
 		</div>
 		<div class="col-5">
-			<p th:if="${#lists.isEmpty(planes)}">Vacía la tabla</p>
-			<table class="table table-sm table-hover" th:unless="${#lists.isEmpty(planes)}">
+			<p th:if="${#lists.isEmpty(usuarios)}">Vacía la tabla</p>
+			<table class="table table-sm table-hover" th:unless="${#lists.isEmpty(usuarios)}">
 				<thead>
 					<tr>
+						<th scope="col">Usuario</th>
+						<th scope="col">Nombre</th>
+						<th scope="col">Email</th>
 						<th scope="col">Plan</th>
-						<th scope="col">Dietas</th>
-						<th scope="col">Entrenamientos</th>
-						<th scope="col">Usuarios</th>
-						<th scope="col">Descripcion</th>
 						<th scope="col">Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="plan : ${planes}">
-						<td th:text="${plan.id}">ID</td>
-						<td th:text="${plan.dieta?.nombre_dieta}">Nombre de la dieta</td>
-						<td th:text="${plan.entrenamiento?.nombre_entrenamiento}">Nombre del entrenamiento</td>
-						<td  th:each="planUsuario : ${plan.usuarios}" th:text="${planUsuario.usuario.nombre}">Nombre de Usuario</td>
-						<td th:text="${plan.descripcion}">Descripción del Plan</td>
+					<tr th:each="usuario : ${usuarios}">
+						<td th:text="${usuario.id}">ID</td>
+						<td th:text="${usuario.nombre}"></td>
+						<td th:text="${usuario.email}"></td>
+						<td  th:each="planUsuario : ${usuario.planes}" th:text="${planUsuario.plan.id}">Nombre de Usuario</td>
 						<td>
-							<a th:href="@{/plan/edit/{id}(id=${plan.id})}" class="btn btn-primary">Editar</a>
-							<a th:href="@{/plan/del/{id}(id=${plan.id})}" class="btn btn-danger">Eliminar</a>
+							<a th:href="@{/usuario/edit/{id}(id=${usuario.id})}" class="btn btn-primary">Editar</a>
+							<a th:href="@{/usuario/del/{id}(id=${usuario.id})}" class="btn btn-danger">Eliminar</a>
 						</td>
 					</tr>
 				</tbody>

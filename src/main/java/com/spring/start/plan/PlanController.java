@@ -1,9 +1,8 @@
 package com.spring.start.plan;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +16,6 @@ import com.spring.start.dietas.Dieta;
 import com.spring.start.dietas.DietaDAO;
 import com.spring.start.entrenamientos.Entrenamiento;
 import com.spring.start.entrenamientos.EntrenamientoDAO;
-import com.spring.start.usuarios.Usuario;
 import com.spring.start.usuarios.UsuarioDAO;
 
 @Controller
@@ -96,27 +94,12 @@ public class PlanController {
 				}
 			}
 		}
-		if (!plan.getUsuarios().isEmpty()) {
-		    Set<Usuario> usuariosActualizados = new HashSet<Usuario>();
-		    for (Usuario usuario : plan.getUsuarios()) {
-		        Optional<Usuario> optionalUsuario = usuarioDAO.findById(usuario.getId());
-		        if (optionalUsuario.isPresent()) {
-		            Usuario usuarioExistente = optionalUsuario.get();
-		            usuariosActualizados.add(usuarioExistente);
-		            
-		            if (!usuarioExistente.getPlanes().contains(plan)) {
-		                usuarioExistente.getPlanes().add(plan);
-		            }
-		        }
-		    }
-		    plan.setUsuarios(usuariosActualizados);
-		}
-
+		
 		planDAO.save(plan);
 
 		ModelAndView model = new ModelAndView();
 		model.addObject("planNuevo", plan);
-		model.setViewName("redirect:/plan/nuevo/" + plan.getId());
+		model.setViewName("redirect:/plan");
 
 		return model;
 	}
@@ -159,7 +142,6 @@ public class PlanController {
 			model.setViewName("formPlan");
 		} else
 			model.setViewName("redirect:/plan");
-
 		return model;
 	}
 
@@ -211,22 +193,4 @@ public class PlanController {
 
 		return model;
 	}
-	/*@GetMapping("/plan/entrenamiento/del/{idPlan}")
-	public ModelAndView eliminarPlanUsuario(@PathVariable long idPlan) {
-
-		Optional<Plan> plan = planDAO.findById(idPlan);
-		if (plan.isPresent()) {
-
-			Plan planazo = plan.get();
-			Usuario usuario = (Usuario) planazo.getUsuarios();
-			planazo.setEntrenamiento(null);
-			usuario.setPlanes(null);
-			planDAO.save(planazo);
-		}
-
-		ModelAndView model = new ModelAndView();
-		model.setViewName("redirect:/plan");
-
-		return model;
-	}*/
 }

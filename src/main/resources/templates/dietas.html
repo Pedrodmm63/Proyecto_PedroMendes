@@ -29,7 +29,8 @@
 			</div>
 		</div>
 		<div class="col-5">
-			<table class="table table-sm table-hover">
+			<p th:if="${#lists.isEmpty(dietas)}">Vacía la tabla</p>
+			<table class="table table-sm table-hover" th:unless="${#lists.isEmpty(dietas)}">
 				<thead>
 					<tr>
 						<th scope="col">#</th>

@@ -78,22 +78,24 @@ public class EntrenamientosController {
 	
 	@GetMapping("/entrenamiento/del/{id}")
 	public ModelAndView delDieta(@PathVariable long id) {
-	    Optional<Entrenamiento> entrenamientoOpt = entrenamientoDAO.findById(id);
+
+		Optional<Entrenamiento> entrenamientoOpt = entrenamientoDAO.findById(id);
 	    if (entrenamientoOpt.isPresent()) {
 	        Entrenamiento entrenamiento = entrenamientoOpt.get();
 	        
 	        List<Plan> planes = entrenamiento.getPlanes();
 	        for (Plan plan : planes) {
-	            plan.setDieta(null); 
-	            planDAO.save(plan);
+	            plan.setEntrenamiento(null); 
+	            planDAO.save(plan); 
 	        }
 	        
-	        entrenamientoDAO.deleteById(id);
+	        entrenamientoDAO.delete(entrenamiento);
 	    }
 
 	    ModelAndView model = new ModelAndView();
 	    model.setViewName("redirect:/entrenamiento");
 	    return model;
+
 	}
 
 	
